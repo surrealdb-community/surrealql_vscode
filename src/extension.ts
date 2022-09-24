@@ -1,28 +1,34 @@
-import * as vscode from 'vscode';
-import { workspace, window, ExtensionContext, TextDocument, OutputChannel, WorkspaceFolder, Uri } from "vscode";
+import { workspace, window, ExtensionContext, WorkspaceFolder, Uri } from "vscode";
 import { LanguageClient, LanguageClientOptions, TransportKind } from "vscode-languageclient/node";
 
 let client: LanguageClient;
 
-export function activate(context: ExtensionContext) {
-	const pathToLangServer = '/home/sebastian/surrealdb/target/debug/surreal'
-	const serverArguments = ['lsp']
+export async function activate(ctx: ExtensionContext) {
+	const pathToServer = (workspace.getConfiguration().get('surrealql.lsp.exec') ?? 'surreal') as string
 
 	const server = {
-		command: pathToLangServer,
-		args: serverArguments
+		command: pathToServer,
+		args: ['lsp']
 	}
 
-	client = new LanguageClient('surrealdb1', {
-		run: server,
-		debug: server
-	}, {
-		documentSelector: [
-			{ scheme: 'file', language: 'surrealql' }
-		]
-	})
+	client = new LanguageClient('surrealql', 
+		{
+			run: server,
+			debug: server
+		}, 
+		{
+			documentSelector: [
+				{ scheme: 'file', language: 'surrealql' }
+			]
+		}
+	)
 
-	client.start()
+	try {
+		await client.start()
+		client.outputChannel.show()
+	} catch (ex) {
+		window.showErrorMessage('Language Server could not be started make sure [surrealql.lsp.exec] points to the correct executable!')
+	}
 }
 
 
