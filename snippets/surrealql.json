@@ -1,0 +1,10 @@
+{
+	"SELECT": {
+		"prefix": "select",
+		"body": [
+			"SELECT $1 FROM $2",
+			"$3"
+		],
+		"description": "Select query"
+	}
+}

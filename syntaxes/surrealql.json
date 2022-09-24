@@ -1,6 +1,6 @@
 {
     "scopeName": "source.surealql",
-    "patterns": [{"include": "#keywords"}, {"include": "#comment"}],
+    "patterns": [{"include": "#keywords"}, {"include": "#comment"}, {"include": "#records"}],
     "repository": {
         "comment": {
             "begin": "--",
@@ -14,7 +14,11 @@
         },
         "keywords": {
             "name": "keyword.surrealql",
-            "match": "SELECT|FROM|WHERE|SPLIT|GROUP|ORDER|RAND|COLLATE|NUMERIC|ASC|DESC|LIMIT|BY|START|AT|FETCH|TIMEOUT|PARALLEL"
+            "match": "PASSWORD|ASSERT|SELECT|FROM|WHERE|SPLIT|GROUP|ORDER|RAND|COLLATE|NUMERIC|ASC|DESC|LIMIT|BY|START|AT|FETCH|TIMEOUT|PARALLEL|USE|NS|DB|LET|BEGIN|CANCEL|COMMIT|TRANSACTION|IF|ELSE|THEN|END|INSERT|IGNORE|INTO|VALUES|ON|DUPLICATE|KEY|UPDATE|CREATE|CONTENT|SET|RETURN|NONE|BEFORE|AFTER|DIFF|UPDATE|SET|MERGE|PATCH|RELATE|DELETE|INFO|KV|FOR|NAMESPACE|DATABASE|SCOPE|TABLE|REMOVE|PERMISSIONS|NONE|FULL|LOGIN|PASSHASH|TOKEN|TYPE|VALUE|DROP|SCHEMAFULL|SCHEMALESS|AS|EVENT|FIELD|ASSERT|INDEX|FIELDS|COLUMNS|UNIQUE|WHEN|DEFINE"
+        },
+        "records": {
+            "name": "record.surrealql",
+            "match": "[a-zA-Z]+:[a-zA-Z0-9]+"
         }
     }
 }
