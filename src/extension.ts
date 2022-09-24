@@ -2,8 +2,10 @@ import * as vscode from 'vscode';
 import { workspace, window, ExtensionContext, TextDocument, OutputChannel, WorkspaceFolder, Uri } from "vscode";
 import { LanguageClient, LanguageClientOptions, TransportKind } from "vscode-languageclient/node";
 
+let client: LanguageClient;
+
 export function activate(context: ExtensionContext) {
-	const pathToLangServer = '/home/sebastian/surrealdb/targets/debug/surrealdb'
+	const pathToLangServer = '/home/sebastian/surrealdb/target/debug/surreal'
 	const serverArguments = ['lsp']
 
 	const server = {
@@ -11,18 +13,21 @@ export function activate(context: ExtensionContext) {
 		args: serverArguments
 	}
 
-	const client = new LanguageClient('surrealdb1', {
+	client = new LanguageClient('surrealdb1', {
 		run: server,
 		debug: server
-		}, {
-			documentSelector: [
-				{ scheme: 'file', language: 'surrealql' }
-			]
-		}
-	)
-	
+	}, {
+		documentSelector: [
+			{ scheme: 'file', language: 'surrealql' }
+		]
+	})
+
 	client.start()
 }
 
 
-export function deactivate() {}
+export function deactivate() {
+	if(client) {
+		return client.stop()
+	}
+}

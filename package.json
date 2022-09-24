@@ -15,7 +15,28 @@
   ],
   "publisher": "mathe42",
   "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:surrealql"
+  ],
   "contributes": {
+    "configuration": {
+			"type": "object",
+			"title": "Example configuration",
+			"properties": {
+				"surrealql.example": {
+					"scope": "resource",
+					"type": "number",
+					"default": 100,
+					"description": "Controls the maximum number of problems produced by the server."
+				},
+        "surrealql.lsp.exec": {
+          "scope": "machine-overridable",
+          "type": "string",
+          "default": "surreal",
+          "description": "Path to surrealdb executable for language server"
+        }
+			}
+		},
     "languages": [
       {
         "id": "surrealql",
