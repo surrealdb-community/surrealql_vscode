@@ -16,7 +16,7 @@ export function activate(context: ExtensionContext) {
 		debug: server
 		}, {
 			documentSelector: [
-				{scheme: 'file', language: 'surrealql'}
+				{ scheme: 'file', language: 'surrealql' }
 			]
 		}
 	)

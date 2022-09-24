@@ -3,15 +3,17 @@
   "displayName": "surrealql",
   "description": "Language support for SurrealQL",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mathe42/surrealql_vscode.git"
+  },
   "engines": {
     "vscode": "^1.71.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:surrealql.helloWorld"
-  ],
+  "publisher": "mathe42",
   "main": "./out/extension.js",
   "contributes": {
     "languages": [
