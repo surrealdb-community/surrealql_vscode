@@ -5,7 +5,7 @@
   "version": "0.0.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mathe42/surrealql_vscode.git"
+    "url": "https://github.com/surrealdb-community/surrealql_vscode.git"
   },
   "engines": {
     "vscode": "^1.71.0"
