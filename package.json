@@ -56,7 +56,10 @@
       {
         "language": "surrealql",
         "scopeName": "source.surealql",
-        "path": "./syntaxes/surrealql.json"
+        "path": "./syntaxes/surrealql.json",
+        "embeddedLanguages": {
+          "source.js": "javascript"
+        }
       },
       {
         "injectTo": [

@@ -16,10 +16,10 @@ const query = surql`
 ```
 will have highlighting!
 
-> Help wanted! If you want to help look into `./syntaxes/surrealql.json`!
+> Help wanted! If you want to help look into `./syntaxes/surrealql.json`! This is still a prototype and WIP.
 
 ### Language config
-See `./language-configuration.json`
+See `./language-configuration.json` 
 
 ### Language server (WIP)
 Integration with language server!

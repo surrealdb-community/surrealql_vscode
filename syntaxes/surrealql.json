@@ -1,24 +1,84 @@
 {
+    "name": "surrealql",
     "scopeName": "source.surealql",
-    "patterns": [{"include": "#keywords"}, {"include": "#comment"}, {"include": "#records"}],
+    "patterns": [
+        {"include": "#statements"}
+    ],
     "repository": {
-        "comment": {
+        "comment.line.slash": {
+            "begin": "//",
+            "end": "\\n",
+            "name": "comment.line.double-slash"
+        },
+        "comment.line.dash": {
             "begin": "--",
             "end": "\\n",
+            "name": "comment.line.double-dash"
+        },
+        "comment.line.hash": {
+            "begin": "#",
+            "end": "\\n",
+            "name": "comment.line.number-sign"
+        },
+        "comment.block": {
+            "begin": "/\\*",
+            "end": "\\*/",
             "name": "comment.block.surrealql"
         },
-        "query": {
+        "comment": {
             "patterns": [
-                {"include": "#keywords"}
+                {"include": "#comment.line.slash"},
+                {"include": "#comment.line.dash"},
+                {"include": "#comment.line.hash"},
+                {"include": "#comment.block"}
+            ]
+        },
+        "function": {
+            "match": "([a-zA-Z]+::)+[a-zA-Z]+\\(([^\\)]+)\\)",
+            "name": "support.function",
+            "captures": {
+                "2": {
+                    "name": "variable.parameter"
+                }
+            }
+        },
+        "function.js": {
+            "begin": "(function|fn|fn::script)\\s*\\(([^\\)]*)\\)\\s*{",
+            "end": "}",
+            "beginCaptures": {
+                "1": { "name": "support.function" },
+                "2": { "name": "variable.parameter" }
+            },
+            "patterns": [
+                {"include": "source.js"}
             ]
         },
         "keywords": {
             "name": "keyword.surrealql",
             "match": "PASSWORD|ASSERT|SELECT|FROM|WHERE|SPLIT|GROUP|ORDER|RAND|COLLATE|NUMERIC|ASC|DESC|LIMIT|BY|START|AT|FETCH|TIMEOUT|PARALLEL|USE|NS|DB|LET|BEGIN|CANCEL|COMMIT|TRANSACTION|IF|ELSE|THEN|END|INSERT|IGNORE|INTO|VALUES|ON|DUPLICATE|KEY|UPDATE|CREATE|CONTENT|SET|RETURN|NONE|BEFORE|AFTER|DIFF|UPDATE|SET|MERGE|PATCH|RELATE|DELETE|INFO|KV|FOR|NAMESPACE|DATABASE|SCOPE|TABLE|REMOVE|PERMISSIONS|NONE|FULL|LOGIN|PASSHASH|TOKEN|TYPE|VALUE|DROP|SCHEMAFULL|SCHEMALESS|AS|EVENT|FIELD|ASSERT|INDEX|FIELDS|COLUMNS|UNIQUE|WHEN|DEFINE"
         },
-        "records": {
-            "name": "record.surrealql",
-            "match": "[a-zA-Z]+:[a-zA-Z0-9]+"
+        "statements": {
+			"patterns": [
+				{ "include": "#comment"},
+                { "include": "#function.js"},
+                { "include": "#escapedContent"},
+                { "include": "#function" },
+                { "include": "#keywords"},
+                { "include": "#var-name" }
+			]
+		},
+        "var-name": {
+            "patterns": [
+                {"match": "\\$[a-zA-Z_]+", "name": "variable.name"},
+                {"match": "\\$`[^`]+`", "name": "variable.name"},
+                {"match": "\\$⟨[^⟩]+⟩", "name": "variable.name"}
+            ]
+        },
+        "js-function": {
+            "match": "(LET|let)\\s+",
+            "patterns": [
+				{ "include": "#comment"}
+            ]
         }
     }
 }
