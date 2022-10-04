@@ -2,7 +2,7 @@
   "name": "surrealql",
   "displayName": "surrealql",
   "description": "Language support for SurrealQL",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/surrealdb-community/surrealql_vscode.git"
