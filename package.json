@@ -2,6 +2,7 @@
   "name": "surrealql",
   "displayName": "surrealql",
   "description": "Language support for SurrealQL",
+  "icon": "./icons/surreal.png",
   "version": "0.0.3",
   "repository": {
     "type": "git",
@@ -16,40 +17,26 @@
     "Snippets"
   ],
   "publisher": "mathe42",
-  "main": "./out/extension.js",
-  "activationEvents": [
-    "onLanguage:surrealql"
-  ],
   "contributes": {
-    "configuration": {
-			"type": "object",
-			"title": "Example configuration",
-			"properties": {
-				"surrealql.example": {
-					"scope": "resource",
-					"type": "number",
-					"default": 100,
-					"description": "Controls the maximum number of problems produced by the server."
-				},
-        "surrealql.lsp.exec": {
-          "scope": "machine-overridable",
-          "type": "string",
-          "default": "surreal",
-          "description": "Path to surrealdb executable for language server"
-        }
-			}
-		},
     "languages": [
       {
         "id": "surrealql",
         "extensions": [
-          ".surql"
+          ".suql",
+          ".srql",
+          ".surql",
+          ".surealql",
+          ".surreal"
         ],
         "aliases": [
           "surrealql",
           "surrealdb"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/surreal.png",
+          "dark": "./icons/surreal.png"
+        }
       }
     ],
     "grammars": [

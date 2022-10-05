@@ -11,7 +11,7 @@
   "repository": {
     "sql-template-literal": {
       "name": "meta.embedded.block.surrealql",
-      "begin": "[sS][uU][rR][qQ][lL]\\s*(\\.[_$[:alpha:]][_$[:alnum:]]*)?\\s*(<.+>)?(\\(.+\\))?(\\s*`)",
+      "begin": "(suql|srql|surql|surealql|surreal|(\\/\\*\\s*surrealql\\s*\\*\\/))\\s*(\\.[_$[:alpha:]][_$[:alnum:]]*)?\\s*(<.+>)?(\\(.+\\))?(\\s*`)",
       "end": "(`)",
       "patterns": [
         {

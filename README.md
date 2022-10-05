@@ -6,7 +6,9 @@
 ## Features
 
 ### Syntax higlighting (WIP)
-In `.surql` files and in TS/JS-Files useing taged-template-litarals you get syntax highlihting!
+  In files with extensions `.suql`, `.srql`, `.surql`, `.surealql`, `.surreal` and in TS/JS-Files useing tagged-template-literals with tag `suql`, `srql`, `surql`, `surealql`, `surreal` you get syntax highlighting!
+
+  Also you can add a comment `/* surrealql */` before your template-literal (NOTE: This is a syntax not recomended as formaters / linters could break it!).
 
 For example
 ```ts
@@ -16,13 +18,20 @@ const query = surql`
 ```
 will have highlighting!
 
+> The idea is that libs can define there own handler of that tag. If you are a lib autor of an other langage and there is a similar concept feel free to contact me!
+
+
 > Help wanted! If you want to help look into `./syntaxes/surrealql.json`! This is still a prototype and WIP.
 
 ### Language config
-See `./language-configuration.json` 
+Define comments, brackets, autoClosingPairs, surroundingPairs and folding for surrealql.
+
+### Snippets (WIP)
+List of usefull snippets (currently a single one). Feel free to create PR / issues to add / request snippets.
 
 ### Language server (WIP)
-Integration with language server!
+Integration with language server! (No support yet as the LSP is not written yet)
+
 
 ## Contributors ✨
 
