@@ -471,6 +471,21 @@
                 }
             ]
         },
+        "function.count": {
+            "begin": "(count)\\s*\\(\\s*",
+            "end": "\\)",
+            "contentName": "surrealql.count.content",
+            "beginCaptures": {
+                "1": {
+                    "name": "variable.parameter"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#value"
+                }
+            ]
+        },
         "var-name": {
             "patterns": [
                 {
@@ -572,7 +587,7 @@
                 {
                     "match": "\\*=",
                     "name": "keyword.operator.symbol"
-                },                
+                },
                 {
                     "match": "\\*~",
                     "name": "keyword.operator.symbol"
@@ -580,7 +595,7 @@
                 {
                     "match": "\\?~",
                     "name": "keyword.operator.symbol"
-                },        
+                },
                 {
                     "match": "\\?=",
                     "name": "keyword.operator.symbol"
@@ -690,7 +705,9 @@
                     "end": "(?<!\\\\)\"",
                     "name": "string.quoted.double",
                     "patterns": [
-                        { "include": "#uuid" }
+                        {
+                            "include": "#uuid"
+                        }
                     ]
                 },
                 {
@@ -698,7 +715,9 @@
                     "end": "(?<!\\\\)'",
                     "name": "string.quoted.single",
                     "patterns": [
-                        { "include": "#uuid" }
+                        {
+                            "include": "#uuid"
+                        }
                     ]
                 },
                 {
@@ -706,7 +725,9 @@
                     "end": "(?<!\\\\)`",
                     "name": "string.quoted.other",
                     "patterns": [
-                        { "include": "#uuid" }
+                        {
+                            "include": "#uuid"
+                        }
                     ]
                 }
             ]
@@ -727,19 +748,19 @@
             "match": "\\b(null|NULL|none|NONE)\\b",
             "name": "constant.language.void"
         },
-        "statements": {
+        "value": {
             "patterns": [
-                {
-                    "include": "#comment"
-                },
                 {
                     "include": "#function.js"
                 },
                 {
-                    "include": "#function"
+                    "include": "#future"
                 },
                 {
-                    "include": "#type-definition"
+                    "include": "#function.count"
+                },
+                {
+                    "include": "#function"
                 },
                 {
                     "include": "#var-name"
@@ -764,6 +785,52 @@
                 },
                 {
                     "include": "#operator"
+                }
+            ]
+        },
+        "idiom": {
+            "patterns": []
+        },
+        "future": {
+            "begin": "(<)(future)(>)\\s*\\{\\s*",
+            "end": "\\}",
+            "contentName": "surrealql.future",
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#value"
+                },
+                {
+                    "include": "#idiom"
+                }
+            ],
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.other"
+                },
+                "2": {
+                    "name": "support.type"
+                },
+                "3": {
+                    "name": "keyword.other"
+                }
+            }
+        },
+        "statements": {
+            "patterns": [
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#value"
+                },
+                {
+                    "include": "#idiom"
+                },
+                {
+                    "include": "#type-definition"
                 },
                 {
                     "include": "#keywords"

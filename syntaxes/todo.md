@@ -2,7 +2,19 @@
 7. special angles etc.
 8. object
 9. arrays
-10. futures
 12. idiom
-13. count
-	
+14. Startement pattern	
+
+IDIOM: -> <- [] * a-z A-Z 0-9 . 
+
+->
+<-
+[STAMTEMENTS]
+
+
+
+idom = (THING|GRAPH)PART+ or (FIRST|GRAPH)PART+
+part = (ALL|LAST|INDEX|FIELD|GRAPH|FILTER)
+first = IDENT(ending)
+graph = 
+
