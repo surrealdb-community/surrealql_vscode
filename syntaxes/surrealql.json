@@ -707,6 +707,9 @@
                     "patterns": [
                         {
                             "include": "#uuid"
+                        },
+                        {
+                            "include": "#record"
                         }
                     ]
                 },
@@ -717,6 +720,9 @@
                     "patterns": [
                         {
                             "include": "#uuid"
+                        },
+                        {
+                            "include": "#record"
                         }
                     ]
                 },
@@ -752,8 +758,20 @@
             "begin": "\\[",
             "end": "\\]",
             "patterns": [
-                {"include": "#value"},
-                {"match": ",", "name": "punctuation.separator.array"}
+                {
+                    "include": "#array-content"
+                }
+            ]
+        },
+        "array-content": {
+            "patterns": [
+                {
+                    "include": "#value"
+                },
+                {
+                    "match": ",",
+                    "name": "punctuation.separator.array"
+                }
             ]
         },
         "object": {
@@ -761,8 +779,19 @@
             "end": "\\}",
             "name": "surrealql.object",
             "patterns": [
-                { "include": "#object-key" },
-                { "include": "#comment" },
+                {
+                    "include": "#object-content"
+                }
+            ]
+        },
+        "object-content": {
+            "patterns": [
+                {
+                    "include": "#object-key"
+                },
+                {
+                    "include": "#comment"
+                },
                 {
                     "begin": ":",
                     "end": "(,)|(?=\\})",
@@ -792,7 +821,64 @@
                 }
             ]
         },
-        "object-sting-content": {},
+        "record": {
+            "patterns": [
+                {
+                    "match": "([a-zA-Z0-9_]+):⟨([^⟩]+)⟩",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.class"
+                        },
+                        "2": {
+                            "name": "entity.other.attribute-name"
+                        }
+                    },
+                    "name": "entity.name"
+                },
+                {
+                    "match": "([a-zA-Z0-9_]+):`([^`]+)`",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.class"
+                        },
+                        "2": {
+                            "name": "entity.other.attribute-name"
+                        }
+                    },
+                    "name": "entity.name"
+                },
+                {
+                    "match": "([a-zA-Z0-9_]+):([a-zA-Z0-9_]+)",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.class"
+                        },
+                        "2": {
+                            "name": "entity.other.attribute-name"
+                        }
+                    },
+                    "name": "entity.name"
+                },
+                {
+                    "begin": "([a-zA-Z0-9_]+):\\[",
+                    "end": "\\]",
+                    "patterns": [
+                        {
+                            "include": "#array-content"
+                        }
+                    ]
+                },
+                {
+                    "begin": "([a-zA-Z0-9_]+):\\{",
+                    "end": "\\}",
+                    "patterns": [
+                        {
+                            "include": "#object-content"
+                        }
+                    ]
+                }
+            ]
+        },
         "value": {
             "patterns": [
                 {
@@ -833,6 +919,9 @@
                 },
                 {
                     "include": "#number"
+                },
+                {
+                    "include": "#record"
                 },
                 {
                     "include": "#type-cast"

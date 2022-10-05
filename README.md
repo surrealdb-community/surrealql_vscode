@@ -6,9 +6,9 @@
 ## Features
 
 ### Syntax higlighting (WIP)
-  In files with extensions `.suql`, `.srql`, `.surql`, `.surealql`, `.surreal` and in TS/JS-Files useing tagged-template-literals with tag `suql`, `srql`, `surql`, `surealql`, `surreal` you get syntax highlighting!
+In files with extensions `.suql`, `.srql`, `.surql`, `.surealql`, `.surreal` and in TS/JS-Files useing tagged-template-literals with tag `suql`, `srql`, `surql`, `surealql`, `surreal` you get syntax highlighting!
 
-  Also you can add a comment `/* surrealql */` before your template-literal (NOTE: This is a syntax not recomended as formaters / linters could break it!).
+Also you can add a comment `/* surrealql */` before your template-literal (NOTE: This is a syntax not recomended as formaters / linters could break it!).
 
 For example
 ```ts
@@ -21,7 +21,12 @@ will have highlighting!
 > The idea is that libs can define there own handler of that tag. If you are a lib autor of an other langage and there is a similar concept feel free to contact me!
 
 
-> Help wanted! If you want to help look into `./syntaxes/surrealql.json`! This is still a prototype and WIP.
+#### Missing features
+1. idiom - for example `messages.*` `messages.*.createdAt` `->is_friend_of->person`, ...
+2. some statement pattern can be added
+3. some pattern can be detected that are non valid.
+4. maybe better datetime support
+5. change some naming internaly
 
 ### Language config
 Define comments, brackets, autoClosingPairs, surroundingPairs and folding for surrealql.
