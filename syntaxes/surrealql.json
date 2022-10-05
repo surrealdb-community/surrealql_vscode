@@ -45,13 +45,21 @@
             ]
         },
         "function": {
-            "match": "([a-zA-Z]+::)+[a-zA-Z]+\\(([^\\)]*)\\)",
-            "name": "support.function",
-            "captures": {
-                "2": {
-                    "name": "variable.parameter"
+            "patterns": [
+                {
+                    "match": "([a-zA-Z]+::)+[a-zA-Z]+\\(([^\\)]*)\\)",
+                    "name": "support.function",
+                    "captures": {
+                        "2": {
+                            "name": "variable.parameter"
+                        }
+                    }
+                },
+                {
+                    "match": "\\brand\\(\\)",
+                    "name": "support.function"
                 }
-            }
+            ]
         },
         "function.js": {
             "begin": "(function|fn|fn::script)\\s*\\(([^\\)]*)\\)\\s*{",
@@ -481,6 +489,9 @@
                 }
             },
             "patterns": [
+                {
+                    "include": "#idiom"
+                },
                 {
                     "include": "#value"
                 }
@@ -932,7 +943,35 @@
             ]
         },
         "idiom": {
-            "patterns": []
+            "patterns": [
+                {
+                    "begin": "\\[",
+                    "end": "\\]",
+                    "patterns": [
+                        {"include": "#statements"}
+                    ]
+                },
+                {
+                    "match": "(->|<-)[a-zA-Z0-9_]+\\b",
+                    "name": "surrealql.direction-with-table"
+                },
+                {
+                    "match": "\\b[a-zA-Z0-9_]+(->|<-)",
+                    "name": "surrealql.direction-with-table"
+                },
+                {
+                    "match": "\\b[a-zA-Z0-9_]+\\.",
+                    "name": "surrealql.subfield-with-field"
+                },
+                {
+                    "match": "\\.[a-zA-Z0-9_]+\\b",
+                    "name": "surrealql.subfield-with-field"
+                },
+                {
+                    "match": "(?<=\\.)[a-zA-Z0-9_]+\\b",
+                    "name": "surrealql.subfield-with-field"
+                }
+            ]
         },
         "future": {
             "begin": "(<)(future)(>)\\s*\\{\\s*",
@@ -967,16 +1006,24 @@
                     "include": "#comment"
                 },
                 {
-                    "include": "#value"
+                    "include": "#idiom"
                 },
                 {
-                    "include": "#idiom"
+                    "include": "#value"
                 },
                 {
                     "include": "#type-definition"
                 },
                 {
                     "include": "#keywords"
+                },
+                {
+                    "match": "[a-zA-Z0-9_]+",
+                    "name": "entity.name.class"
+                },
+                {
+                    "match": "[^;\\s,]",
+                    "name": "invalid.illegal.test"
                 }
             ]
         }
