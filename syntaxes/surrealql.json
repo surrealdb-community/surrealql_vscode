@@ -748,8 +748,56 @@
             "match": "\\b(null|NULL|none|NONE)\\b",
             "name": "constant.language.void"
         },
+        "array": {
+            "begin": "\\[",
+            "end": "\\]",
+            "patterns": [
+                {"include": "#value"},
+                {"match": ",", "name": "punctuation.separator.array"}
+            ]
+        },
+        "object": {
+            "begin": "\\{",
+            "end": "\\}",
+            "name": "surrealql.object",
+            "patterns": [
+                { "include": "#object-key" },
+                { "include": "#comment" },
+                {
+                    "begin": ":",
+                    "end": "(,)|(?=\\})",
+                    "patterns": [
+                        {
+                            "include": "#value"
+                        }
+                    ]
+                }
+            ]
+        },
+        "object-key": {
+            "patterns": [
+                {
+                    "begin": "\"",
+                    "end": "\"",
+                    "contentName": "entity.name.method"
+                },
+                {
+                    "begin": "'",
+                    "end": "'",
+                    "contentName": "entity.name.method"
+                },
+                {
+                    "match": "[a-zA-Z_0-9]+",
+                    "name": "entity.name.method"
+                }
+            ]
+        },
+        "object-sting-content": {},
         "value": {
             "patterns": [
+                {
+                    "include": "#comment"
+                },
                 {
                     "include": "#function.js"
                 },
@@ -761,6 +809,12 @@
                 },
                 {
                     "include": "#function"
+                },
+                {
+                    "include": "#object"
+                },
+                {
+                    "include": "#array"
                 },
                 {
                     "include": "#var-name"

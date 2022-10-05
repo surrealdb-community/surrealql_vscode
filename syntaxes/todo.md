@@ -1,9 +1,8 @@
 6. record id
 7. special angles etc.
-8. object
-9. arrays
 12. idiom
 14. Startement pattern	
+15. error handling
 
 IDIOM: -> <- [] * a-z A-Z 0-9 . 
 
